@@ -50,9 +50,16 @@ void menuTemperatura(int *c,int * opciones,int * p)
 	printf("%i",opciones[i]);
 	if(opciones[i]=='a'){
 		menuDatosMar(p,c,opciones);
-	}else{
-		*c=*c+1;
+	}else if(opciones[i]=='s'){
+		p[0]='s';
 	}
+	else if(opciones[i]>4 && opciones[i]<8){
+		*c=*c+1;
+	}else{
+		printf("El numero marcado no esta disponible en el menu.");
+		menuTemperatura(c,opciones,p);
+	}
+
 
 }
 void menuOleaje(int *c,int * opciones,int * p)
@@ -62,8 +69,13 @@ void menuOleaje(int *c,int * opciones,int * p)
 	pedirPorTeclado(menu3,opciones+i);
 	if(opciones[i]=='a'){
 		menuDatosMar(p,c,opciones);
-	}else{
+	}else if(opciones[i]=='s'){
+		p[0]='s';
+	}else if(opciones[i]>7 && opciones[i]<11){
 		*c=*c+1;
+	}else{
+		printf("El numero marcado no esta disponible en el menu.");
+		menuOleaje(c,opciones,p);
 	}
 }
 void menuPeriodoOleaje(int *c,int * opciones,int * p)
@@ -73,8 +85,13 @@ void menuPeriodoOleaje(int *c,int * opciones,int * p)
 	pedirPorTeclado(menu3,opciones+i);
 	if(opciones[i]=='a'){
 		menuDatosMar(p,c,opciones);
-	}else{
+	}else if(opciones[i]=='s'){
+		p[0]='s';
+	}else if(opciones[i]>10 && opciones[i]<14){
 		*c=*c+1;
+	}else{
+		printf("El numero marcado no esta disponible en el menu.");
+		menuPeriodoOleaje(c,opciones, p);
 	}
 }
 void menuBandera(int *c,int * opciones,int * p)
@@ -84,8 +101,13 @@ void menuBandera(int *c,int * opciones,int * p)
 	pedirPorTeclado(menu3,opciones+i);
 	if(opciones[i]=='a'){
 		menuDatosMar(p,c,opciones);
-	}else{
+	}else if(opciones[i]=='s'){
+		p[0]='s';
+	}else if(opciones[i]>16 && opciones[i]<20){
 		*c=*c+1;
+	}else{
+		printf("El numero marcado no esta disponible en el menu.");
+		menuBandera(c,opciones,p);
 	}
 }
 void menuArena(int *c,int * opciones,int * p)
@@ -95,8 +117,13 @@ void menuArena(int *c,int * opciones,int * p)
 	pedirPorTeclado(menu3,opciones+i);
 	if(opciones[i]=='a'){
 		menuCriterios(opciones,c,p);
-	}else{
+	}else if(opciones[i]=='s'){
+		p[0]='s';
+	}else if(opciones[i]>19 && opciones[i]<23){
 		*c=*c+1;
+	}else{
+		printf("El numero marcado no esta disponible en el menu.");
+		menuArena(c,opciones,p);
 	}
 }
 void menuAtmosfericos(int *c,int * opciones,int * p)
@@ -106,8 +133,13 @@ void menuAtmosfericos(int *c,int * opciones,int * p)
 	pedirPorTeclado(menu3,opciones+i);
 	if(opciones[i]=='a'){
 		menuCriterios(opciones,c,p);
-	}else{
+	}else if(opciones[i]=='s'){
+		p[0]='s';
+	}else if(opciones[i]>22 && opciones[i]<27){
 		*c=*c+1;
+	}else{
+		printf("El numero marcado no esta disponible en el menu.");
+		menuAtmosfericos(c,opciones,p);
 	}
 }
 void menuAcceso(int *c,int * opciones,int * p)
@@ -117,8 +149,13 @@ void menuAcceso(int *c,int * opciones,int * p)
 	pedirPorTeclado(menu3,opciones+i);
 	if(opciones[i]=='a'){
 		menuCriterios(opciones,c,p);
-	}else{
+	}else if(opciones[i]=='s'){
+		p[0]='s';
+	}else if(opciones[i]>26 && opciones[i]<31){
 		*c=*c+1;
+	}else{
+		printf("El numero marcado no esta disponible en el menu.");
+		menuAcceso(c,opciones,p);
 	}
 }
 void menuAcctividad(int *c,int * opciones,int * p)
@@ -128,8 +165,13 @@ void menuAcctividad(int *c,int * opciones,int * p)
 	pedirPorTeclado(menu3,opciones+i);
 	if(opciones[i]=='a'){
 		menuCriterios(opciones,c,p);
-	}else{
+	}else if(opciones[i]=='s'){
+		menuPrincipal(c,opciones,p);
+	}else if(opciones[i]>0 && opciones[i]<5){
 		*c=*c+1;
+	}else{
+		printf("El numero marcado no esta disponible en el menu.");
+		menuAcctividad(c,opciones,p);
 	}
 }
 void menuCriterios(int * opciones,int * c,int * p)
@@ -141,27 +183,32 @@ void menuCriterios(int * opciones,int * c,int * p)
 				menuAcctividad(c,opciones,p);
 
 
-			}if(p[1]==2){
+			}else if(p[1]==2){
 				int num2=0;
 				menuDatosMar(p,c,opciones);
 
-			}if(p[1]==3){
+			}else if(p[1]==3){
 				menuArena(c,opciones,p);
 
-			}if(p[1]==4){
+			}else if(p[1]==4){
 				menuAtmosfericos(c,opciones,p);
 
-			}if(p[1]==5){
+			}else if(p[1]==5){
 				menuAcceso(c,opciones,p);
 
-			}if(p[1]=='a'){
+			}else if(p[1]=='a'){
 
 				menuPrincipal(c,opciones,p);
+			}else if(p[1]=='s'){
+				p[0]='s';
 
-			}if((p[1]<1 || p[1]>5) && p[1]!='s' && p[1]!='a'){
+
+			}else{
 				//printf("%i",num1);
-				printf("El numero marcado no esta disponible en el menu.Seleccione otro de nuevo");
+				printf("El numero marcado no esta disponible en el menu.");
+				menuCriterios(opciones,c,p);
 			}
+
 
 }
 void menuDatosMar(int *p,int *c,int *opciones)
@@ -171,42 +218,59 @@ void menuDatosMar(int *p,int *c,int *opciones)
 				if(p[2]==1){
 					menuTemperatura(c,opciones,p);
 
-				}if(p[2]==2){
+				}else if(p[2]==2){
 					menuOleaje(c, opciones,p);
 
-				}if(p[2]==3){
+				}else if(p[2]==3){
 					menuPeriodoOleaje(c,opciones,p);
 
-				}if(p[2]==4){
+				}else if(p[2]==4){
 					menuBandera(c,opciones,p);
-				}if(p[2]=='a'){
+				}else if(p[2]=='a'){
 					menuCriterios(opciones,c,p);
 
+				}else if(p[2]=='s'){
+					p[0]='s';
+
+				}else{
+					printf("El numero marcado no esta disponible en el menu.");
+					menuDatosMar(p,c,opciones);
+
+
 				}
+
 }
 void menuPrincipal(int *c,int *opciones,int *p)
 {
-	p[0]=0;
-	while(p[0]!=4){
+
 	char * menu1="¿Qué deeesea, buscar datos del dia de hoy o tendencias y pronósticos?\n(Si quiere buscar datos de hoy pulse 1, si desea buscar tendencias y pronósticos pulse 2\n, si quiere dejar algún comentario de una playa pulse 3, si desea salir pulse 4).";
-		pedirPorTeclado(menu1,&p[0]);
-		//printf("%i ",p[0]);
+
+	while(p[0]!=4 && p[0]!='s'){
+
+	pedirPorTeclado(menu1,&p[0]);
+
 		if(p[0]==1){
 			p[1]=0;
 			do{
 				menuCriterios(opciones,c,p);
-			}while(p[1]!='s' || c>5);
+			}while(p[0]!='s' && *c<5);
 			//printf("voy a imprimir opciones");
-			imprimirOpciones(opciones,c);
+			imprimirOpciones(opciones,*c);
 		}
 
-		if(p[0]==2){
+		else if(p[0]==2){
 
-		}if(p[0]==3){
+		}else if(p[0]==3){
 
 
-		}if(p[0]<1 || p[0]>3){
-			printf("El numero marcado no esta disponible en el menu.Seleccione otro de nuevo");
+		}else if(p[0]==4){
+
+
+
+
+		}else{
+			printf("El numero marcado no esta disponible en el menu\n");
+			menuPrincipal(c,opciones,p);
 		}
 	}
 }
