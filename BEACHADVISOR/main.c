@@ -16,7 +16,7 @@ void main(void){
 	int *c;
 	c=&i;
 	*c=0;
-	int num=0;
+
 	printf("\t\tBEACH ADVISOR\n\n");
 	printf("°°°°°°°°°°°°|\ \n°°°°°°°°°°°°|_\ \n°°°°°°°°°°°°|__\ \n°°°°°°°°°°°°|___\ \n°°°°°°°°°°°°|____\°°°°°°\n°°°°°°°°°°°°|_____\°°°°°°\n°°°°°°°°°°°°|______\°°°°°°\n°°°°°°______|_______________\n~~~~\____________________/~~~~\n,.-~*´¨¯¨`*•~-.¸,.-~*´¨¯¨`*•~-.¸,.-~*´¨¯¨`*•~-.¸,.-~*´¨¯¨`*•~-.¸,.-~*\n´¨¯¨`*•~-.¸,.-~*´¨¯¨`*•~-.¸,.-~*´¨¯¨`*•~-.¸,.-~*´ `*•~-.¸,.-~*´`*•~-.¸,.-~*´•~-.¸,.-~*´¨¯¨`*•)\n\n\n\n");
 
@@ -29,14 +29,26 @@ void main(void){
 
 	FILE *f;
 	f=fopen("playa.txt","r");
-	Playa * playas=(Playa *)malloc(sizeof(Playa));//faltaria un metodo para saber cuantas lineas tiene el fichero
-	leerPlaya(f,playas,14);
+	int num=contarFilas(f);
+	Playa ** playas=(Playa **)malloc(sizeof(Playa *)*num);
+	int j;
+	for(j=0;j<num;j++){
+		playas[j]=(Playa *)malloc(sizeof(Playa));
+	}
+	fclose(f);
+	FILE *h;
+	h=fopen("playa.txt","r");
+	leerPlaya(h,playas,8,num);
 	printf("he salido");
 	fflush(stdout);
 	fclose(f);
 	//imprimirArray(playas,1);
 	free(opciones);
 	free(posicionMenu);
+	for(j=0;j<num;j++){
+			free(playas[j]);
+		}
+	free(playas);
 
 
 }

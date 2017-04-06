@@ -7,6 +7,7 @@
 #include<stdlib.h>
 #include<stdio.h>
 #include "string.h"
+#include "busqueda.h"
 void pedirPorTeclado(char * pregunta,int * variable){//si mete una letra peta
 	char str[5];
 	clearIfNeeded(str,5);
@@ -50,6 +51,10 @@ void menuTemperatura(int *c,int * opciones,int * p)
 	printf("%i",opciones[i]);
 	if(opciones[i]=='a'){
 		menuDatosMar(p,c,opciones);
+	}else if(estaEn(opciones,*c,opciones[i])==1){
+		printf("Ya has marcado esta opción antes");
+				menuTemperatura(c,opciones,p);
+
 	}else if(opciones[i]=='s'){
 		p[0]='s';
 	}
@@ -69,6 +74,10 @@ void menuOleaje(int *c,int * opciones,int * p)
 	pedirPorTeclado(menu3,opciones+i);
 	if(opciones[i]=='a'){
 		menuDatosMar(p,c,opciones);
+	}else if(estaEn(opciones,*c,opciones[i])==1){
+		printf("Ya has marcado esta opción antes");
+		menuOleaje(c,opciones,p);
+
 	}else if(opciones[i]=='s'){
 		p[0]='s';
 	}else if(opciones[i]>7 && opciones[i]<11){
@@ -85,6 +94,10 @@ void menuPeriodoOleaje(int *c,int * opciones,int * p)
 	pedirPorTeclado(menu3,opciones+i);
 	if(opciones[i]=='a'){
 		menuDatosMar(p,c,opciones);
+	}else if(estaEn(opciones,*c,opciones[i])==1){
+		printf("Ya has marcado esta opción antes");
+		menuPeriodoOleaje(c,opciones, p);
+
 	}else if(opciones[i]=='s'){
 		p[0]='s';
 	}else if(opciones[i]>10 && opciones[i]<14){
@@ -101,6 +114,10 @@ void menuBandera(int *c,int * opciones,int * p)
 	pedirPorTeclado(menu3,opciones+i);
 	if(opciones[i]=='a'){
 		menuDatosMar(p,c,opciones);
+	}else if(estaEn(opciones,*c,opciones[i])==1){
+		printf("Ya has marcado esta opción antes");
+		menuBandera(c,opciones,p);
+
 	}else if(opciones[i]=='s'){
 		p[0]='s';
 	}else if(opciones[i]>16 && opciones[i]<20){
@@ -117,6 +134,10 @@ void menuArena(int *c,int * opciones,int * p)
 	pedirPorTeclado(menu3,opciones+i);
 	if(opciones[i]=='a'){
 		menuCriterios(opciones,c,p);
+	}else if(estaEn(opciones,*c,opciones[i])==1){
+		printf("Ya has marcado esta opción antes");
+		menuArena(c,opciones,p);
+
 	}else if(opciones[i]=='s'){
 		p[0]='s';
 	}else if(opciones[i]>19 && opciones[i]<23){
@@ -133,6 +154,10 @@ void menuAtmosfericos(int *c,int * opciones,int * p)
 	pedirPorTeclado(menu3,opciones+i);
 	if(opciones[i]=='a'){
 		menuCriterios(opciones,c,p);
+	}else if(estaEn(opciones,*c,opciones[i])==1){
+		printf("Ya has marcado esta opción antes");
+		menuAtmosfericos(c,opciones,p);
+
 	}else if(opciones[i]=='s'){
 		p[0]='s';
 	}else if(opciones[i]>22 && opciones[i]<27){
@@ -149,6 +174,10 @@ void menuAcceso(int *c,int * opciones,int * p)
 	pedirPorTeclado(menu3,opciones+i);
 	if(opciones[i]=='a'){
 		menuCriterios(opciones,c,p);
+	}else if(estaEn(opciones,*c,opciones[i])==1){
+		printf("Ya has marcado esta opción antes");
+		menuAcceso(c,opciones,p);
+
 	}else if(opciones[i]=='s'){
 		p[0]='s';
 	}else if(opciones[i]>26 && opciones[i]<31){
@@ -165,6 +194,9 @@ void menuAcctividad(int *c,int * opciones,int * p)
 	pedirPorTeclado(menu3,opciones+i);
 	if(opciones[i]=='a'){
 		menuCriterios(opciones,c,p);
+	}else if(estaEn(opciones,*c,opciones[i])==1){
+		printf("Ya has marcado esta opción antes");
+		menuAcctividad(c,opciones,p);
 	}else if(opciones[i]=='s'){
 		menuPrincipal(c,opciones,p);
 	}else if(opciones[i]>0 && opciones[i]<5){
@@ -259,9 +291,10 @@ void menuPrincipal(int *c,int *opciones,int *p)
 		}
 
 		else if(p[0]==2){
+			//segunda parte
 
 		}else if(p[0]==3){
-
+			//segunda parte
 
 		}else if(p[0]==4){
 
