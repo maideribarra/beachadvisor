@@ -21,12 +21,6 @@ void main(void){
 	printf("°°°°°°°°°°°°|\ \n°°°°°°°°°°°°|_\ \n°°°°°°°°°°°°|__\ \n°°°°°°°°°°°°|___\ \n°°°°°°°°°°°°|____\°°°°°°\n°°°°°°°°°°°°|_____\°°°°°°\n°°°°°°°°°°°°|______\°°°°°°\n°°°°°°______|_______________\n~~~~\____________________/~~~~\n,.-~*´¨¯¨`*•~-.¸,.-~*´¨¯¨`*•~-.¸,.-~*´¨¯¨`*•~-.¸,.-~*´¨¯¨`*•~-.¸,.-~*\n´¨¯¨`*•~-.¸,.-~*´¨¯¨`*•~-.¸,.-~*´¨¯¨`*•~-.¸,.-~*´ `*•~-.¸,.-~*´`*•~-.¸,.-~*´•~-.¸,.-~*´¨¯¨`*•)\n\n\n\n");
 
 	menuPrincipal(c,opciones,posicionMenu);
-	printf("\nEmpiezo con el fichero\n");
-	fflush(stdout);
-
-
-
-
 	FILE *f;
 	f=fopen("playa.txt","r");
 	int num=contarFilas(f);
@@ -39,10 +33,13 @@ void main(void){
 	FILE *h;
 	h=fopen("playa.txt","r");
 	char *** atr=(char ***)malloc(sizeof(char**)*num);
-	leerPlaya(h,playas,8,num,atr);
-	printf("he salido");
+	printf("leer playa");
 	fflush(stdout);
-	fclose(f);
+	int * a;
+	leerPlaya(h,playas,8,num,atr,a);
+	imprimirArray(playas,num);
+
+	fclose(h);
 	//imprimirArray(playas,1);
 	free(opciones);
 	free(posicionMenu);

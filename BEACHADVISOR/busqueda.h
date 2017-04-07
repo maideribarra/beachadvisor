@@ -8,7 +8,7 @@
 #include "fichero.h"
 #ifndef BUSQUEDA_H_
 #define BUSQUEDA_H_
-void imprimirArray(Playa * arr,int tam);
+void imprimirArray(Playa ** arr,int tam);
 int estaEn(int *op,int size,int num);
 
 

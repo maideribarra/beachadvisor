@@ -5,17 +5,17 @@
  *      Author: usuario
  */
 #include "fichero.h"
-void imprimirArray(Playa * arr,int tam)
+void imprimirArray(Playa ** arr,int tam)
 {
 	int i;
 	for(i=0;i<tam;i++){
-		printf(arr[i].)
+		printf("Nombre playa: %s\nCodigo playa: %i\nLocalizacion playa: %s\nProvincia playa: %s\nPais playa: %s\nCoordenada: (%i,%i)\n",arr[i]->nombrePlaya,arr[i]->codigo,arr[i]->loc,arr[i]->provincia,arr[i]->pais,arr[i]->coor.x,arr[i]->coor.y);
+		printf("---------------------------------------------------------\n");
+		fflush(stdout);
 	}
 }
 int estaEn(int *op,int size,int num)
 {
-	printf("size %i",size);
-	fflush(stdout);
 	int numero=1;
 	int i;
 	for(i=0;i<size;i++){

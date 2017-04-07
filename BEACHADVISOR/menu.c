@@ -14,11 +14,9 @@ void pedirPorTeclado(char * pregunta,int * variable){//si mete una letra peta
 	printf("%s",pregunta);
 	fflush(stdout);
 	fgets(str,5,stdin);
-	printf("%i string\n",str[0]);
-	printf("%i string\n",str[1]);
-	printf("%i string\n",str[2]);
+
 	sscanf(str,"%i",variable);
-	printf("%i variable\n",*variable);
+
 	int i;
 	for(i=0;i<5;i++){
 		if(str[i]==115){//para la s
@@ -33,10 +31,12 @@ void pedirPorTeclado(char * pregunta,int * variable){//si mete una letra peta
 void imprimirOpciones(int * array,int size)
 {
 	printf("Has elegido las siguientes prioridades de busqueda:\n");
+	fflush(stdout);
 	int i;
 	for(i=0;i<(size-1);i++){
 		printf("%i,",array[i]);
 	}printf("%i\n",array[size-1]);
+	fflush(stdout);
 }
 void menuTemperatura(int *c,int * opciones,int * p)
 {

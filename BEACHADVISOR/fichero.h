@@ -98,12 +98,13 @@ typedef struct{
 	Playa * playas;
 }GrupoArena;
 
-void leerPlaya(FILE * f,Playa ** array,int cantAtr,int fila,char *** atr);
+void leerPlaya(FILE * f,Playa ** array,int cantAtr,int fila,char *** atr,int * a);
 int contarFilas(FILE * f);
 void separarFila(char * fila,int cantAtr,char ** atributos);
 void liberarAtributos(char *** atributos,int cantAtr,int fila);
-void leerFilaPlaya(char * fila,Playa * playa,int cantAtr,char ** atributos);
+void leerFilaPlaya(char * fila,Playa * playa,int cantAtr,char ** atributos,int * a);
 Coordenada  ConvertirCoordenada(char * str);
 void clearIfNeeded(char *str, int max_line);
+int * tamayoo(char * fila);
 
 #endif /* FICHERO_H_ */
