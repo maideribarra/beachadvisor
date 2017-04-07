@@ -10,6 +10,7 @@
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
+
 typedef struct{
 	int x;
 	int y;
@@ -97,12 +98,12 @@ typedef struct{
 	Playa * playas;
 }GrupoArena;
 
-void leerPlaya(FILE * f,Playa ** array,int cantAtr,int fila);
+void leerPlaya(FILE * f,Playa ** array,int cantAtr,int fila,char *** atr);
 int contarFilas(FILE * f);
-char ** separarFila(char * fila,int cantAtr);
-void liberarAtributos(char ** atributos,int cantAtr);
-void leerFilaPlaya(char * fila,Playa * playa,int cantAtr);
+void separarFila(char * fila,int cantAtr,char ** atributos);
+void liberarAtributos(char *** atributos,int cantAtr,int fila);
+void leerFilaPlaya(char * fila,Playa * playa,int cantAtr,char ** atributos);
 Coordenada  ConvertirCoordenada(char * str);
-void liberarAtributos(char ** atributos,int cantAtr);
+void clearIfNeeded(char *str, int max_line);
 
 #endif /* FICHERO_H_ */

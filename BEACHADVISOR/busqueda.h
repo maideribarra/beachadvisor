@@ -4,6 +4,7 @@
  *  Created on: 31 de mar. de 2017
  *      Author: usuario
  */
+
 #include "fichero.h"
 #ifndef BUSQUEDA_H_
 #define BUSQUEDA_H_

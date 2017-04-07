@@ -8,7 +8,7 @@
 #ifndef MENU_H_
 #define MENU_H_
 void pedirPorTeclado(char * pregunta,int * variable);
-void clearIfNeeded(char *str, int max_line);
+
 void imprimirOpciones(int * array,int size);
 void menuTemperatura(int *c,int * opciones);
 void menuOleaje(int *c,int * opciones);

@@ -28,12 +28,7 @@ void pedirPorTeclado(char * pregunta,int * variable){//si mete una letra peta
 		}
 	}
 }
-void clearIfNeeded(char *str, int max_line)
-{
-	// Limpia los caracteres de más introducidos
-	if ((strlen(str) == max_line-1) && (str[max_line-2] != '\n'))
-		while (getchar() != '\n');
-}
+
 
 void imprimirOpciones(int * array,int size)
 {

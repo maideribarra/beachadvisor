@@ -38,7 +38,8 @@ void main(void){
 	fclose(f);
 	FILE *h;
 	h=fopen("playa.txt","r");
-	leerPlaya(h,playas,8,num);
+	char *** atr=(char ***)malloc(sizeof(char**)*num);
+	leerPlaya(h,playas,8,num,atr);
 	printf("he salido");
 	fflush(stdout);
 	fclose(f);
@@ -49,6 +50,7 @@ void main(void){
 			free(playas[j]);
 		}
 	free(playas);
+	liberarAtributos(atr,8,num);
 
 
 }
