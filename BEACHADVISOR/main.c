@@ -38,15 +38,15 @@ void main(void){
 	int * a;
 	leerPlaya(h,playas,8,num,atr,a);
 	printf("\nempiezo datos playa");
-
+	fflush(stdout);
 	fclose(h);
-
 	FILE * g=fopen("datosPlaya.txt","r");
 	int num2=contarFilas(g);
 	char *** datosplaya=(char ***)malloc(sizeof(char**)*num2);
 	fclose(g);
 	FILE * g2=fopen("datosPlaya.txt","r");
 	meterDatosPlaya(playas,datosplaya,7,num2,num,g2);
+	ponerValorRepetido(playas,num);
 	printf("salgo");
 	fflush(stdout);
 	fclose(g2);
@@ -54,27 +54,27 @@ void main(void){
 	//imprimirArray(playas,1);
 	free(opciones);
 	free(posicionMenu);
-	printf("salgo1");
-		fflush(stdout);
+	//printf("salgo1");
+	//fflush(stdout);
 	liberarPlayas(playas,num);
-	printf("salgo2");
-		fflush(stdout);
+	//printf("salgo2");
+	//fflush(stdout);
 	for(j=0;j<num;j++){
 			free(playas[j]);
 		}
-	printf("salgo3");
-		fflush(stdout);
+	//printf("salgo3");
+	//fflush(stdout);
 	free(playas);
-	printf("salgo4");
-		fflush(stdout);
-		printf("%i",num);
-		fflush(stdout);
-		liberarAtributos(datosplaya,7,num2);
-			printf("salgo6");
-				fflush(stdout);
+	//printf("salgo4");
+	//fflush(stdout);
+	//printf("%i",num);
+	//fflush(stdout);
+	liberarAtributos(datosplaya,7,num2);
+	//printf("salgo6");
+	//fflush(stdout);
 	liberarAtributos(atr,8,num);
-	printf("salgo5");
-		fflush(stdout);
+	//printf("salgo5");
+	//fflush(stdout);
 
 
 

@@ -15,6 +15,8 @@ void leerPlaya(FILE * f,Playa ** array,int cantAtr,int fila,char *** atr,int * a
 	int i=0;
 
 	while(i<fila){
+		printf("leo %i fila",i);
+		fflush(stdout);
 		char *str=(char *)malloc(sizeof(char)*300);
 		clearIfNeeded(str,300);
 		atr[i]=(char**)malloc(sizeof(char*)*cantAtr);
@@ -180,34 +182,35 @@ void leerFilaPlaya(char * fila,Playa * playa,int cantAtr,char ** atributos,int *
 
 
 	sscanf(atributos[0],"%i",&(playa->codigo));
-	printf("%i",(playa->codigo));
-				fflush(stdout);
+	printf(" ");
+	//printf("%i",(playa->codigo));
+				//fflush(stdout);
 
 	playa->nombrePlaya=atributos[1];
-	printf("%s",playa->nombrePlaya);
-			fflush(stdout);
+	//printf("%s",playa->nombrePlaya);
+			//fflush(stdout);
 
 	playa->loc=atributos[3];
-	printf("%s",playa->loc);
-				fflush(stdout);
+	//printf("%s",playa->loc);
+				//fflush(stdout);
 
 
 	playa->pais=atributos[4];
-	printf("%s",playa->pais);
-					fflush(stdout);
+	//printf("%s",playa->pais);
+					//fflush(stdout);
 
 	playa->provincia=atributos[5];
-	printf("%s",playa->provincia);
-						fflush(stdout);
+	//printf("%s",playa->provincia);
+						//fflush(stdout);
 
 
 	playa->mar=atributos[6];
-	printf("%s",playa->mar);
-							fflush(stdout);
+	//printf("%s",playa->mar);
+							//fflush(stdout);
 
 	playa->arena=atributos[7];
-	printf("%s",playa->arena);
-								fflush(stdout);
+	//printf("%s",playa->arena);
+								//fflush(stdout);
 
 	Coordenada  coor=ConvertirCoordenada(atributos[2]);
 
