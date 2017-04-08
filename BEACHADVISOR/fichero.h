@@ -17,6 +17,37 @@ typedef struct{
 
 }Coordenada;
 typedef struct{
+	char ** tiempo;
+	int cant;
+	char * tiempoRepetido;
+
+}ListaTiempo;
+typedef struct{
+	int * radiacionSolar;
+	int cant;
+	float media;
+}ListaRadiacionSolar;
+typedef struct{
+	char ** bandera;
+	int cant;
+	char * banderaRepetida;
+}ListaBandera;
+typedef struct{
+	int * oleaje;
+	int cant;
+	float media;
+}ListaOleaje;
+typedef struct{
+	int * periodo;
+	int cant;
+	float media;
+}ListaPeriodo;
+typedef struct{
+	int * temperaturaMar;
+	int cant;
+	float media;
+}ListaTemperaturaMar;
+typedef struct{
 	int  codigo;
 	char * nombrePlaya;
 	Coordenada  coor;
@@ -25,13 +56,14 @@ typedef struct{
 	char * provincia;
 	char * mar;
 	char * arena;
-	char ** tiempo;
-	int ** radiacionSolar;
-	char ** bandera;
-	int ** oleaje;
-	int ** periodo;
-	int ** temperaturaMar;
+	ListaTiempo tiempo;
+	ListaRadiacionSolar radiacionSolar;
+	ListaBandera bandera;
+	ListaOleaje oleaje;
+	ListaPeriodo periodo;
+	ListaTemperaturaMar temperaturaMar;
 }Playa;
+
 typedef struct{
 	int dia;
 	int mes;
@@ -105,6 +137,13 @@ void liberarAtributos(char *** atributos,int cantAtr,int fila);
 void leerFilaPlaya(char * fila,Playa * playa,int cantAtr,char ** atributos,int * a);
 Coordenada  ConvertirCoordenada(char * str);
 void clearIfNeeded(char *str, int max_line);
-int * tamayoo(char * fila);
+int * tamayoo(char * fila,int cantAtr);
+void pasarFicheroAarray(char *** array,FILE * f,int CantAtr,int sizef);
+Playa * buscarPlaya(Playa ** pl,int size,int codigo);
+void inicializarPlayas(Playa ** pl,int sizepl,int numMax);
+void liberarPlayas(Playa ** pl,int sizepl);
+void meterDatosPlaya(Playa ** pl,char ***array,int CantAtr,int sizef,int sizepl,FILE * f);
+
+
 
 #endif /* FICHERO_H_ */

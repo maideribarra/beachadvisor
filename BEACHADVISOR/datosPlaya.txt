@@ -1,0 +1,8 @@
+0001,verde,2,60,30,15,soleado,
+0002,verde,1,35,14,10,nublado,
+0003,verde,2,20,17,12,lluvioso,
+0001,rojo,1,26,18,10,nublado,
+0002,rojo,2,18,15,7,soleado,
+0003,rojo,2,40,20,10,soleado,
+0001,verde,4,40,5,13,lluvioso,
+0002,verde,3,20,7,15,lluvioso,
