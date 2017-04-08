@@ -76,6 +76,7 @@ typedef struct{
 	char * tipo;
 }Actividad;
 typedef struct{
+	int codigo;
 	char * transporte;
 	char * horario;
 
@@ -144,6 +145,14 @@ void inicializarPlayas(Playa ** pl,int sizepl,int numMax);
 void liberarPlayas(Playa ** pl,int sizepl);
 void meterDatosPlaya(Playa ** pl,char ***array,int CantAtr,int sizef,int sizepl,FILE * f);
 
+
+
+void leerAcceso(FILE * f,Acceso ** array,int cantAtr,int fila,char *** atr,int * a);
+void leerFilaAcceso(char * fila,Acceso * playa,int cantAtr,char ** atributos,int * a);
+void inicializarAcceso(Acceso ** acceso,int sizeac,int numMax);
+void liberarAcceso(Acceso ** acceso,int sizeac);
+Acceso * buscarAcceso(Acceso ** acceso,int size,int codigo);
+void meterDatosAcceso(Acceso ** acceso,char ***array,int CantAtr,int sizef,int sizeac,FILE * f);
 
 
 #endif /* FICHERO_H_ */

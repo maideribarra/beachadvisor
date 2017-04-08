@@ -340,3 +340,78 @@ void meterDatosPlaya(Playa ** pl,char ***array,int CantAtr,int sizef,int sizepl,
 		((p->tiempo).cant)++;
 	}
 }
+
+void leerAcceso(FILE * f, Acceso ** array,int cantAtr,int fila,char *** atr,int * a)
+{
+	int i=0;
+
+		while(i<fila){
+			char *str=(char *)malloc(sizeof(char)*300);
+			clearIfNeeded(str,300);
+			atr[i]=(char**)malloc(sizeof(char*)*cantAtr);
+			str=fgets(str,300,f);
+
+			leerFilaAcceso(str,array[i],cantAtr,atr[i],a);
+
+			i++;
+
+	}
+}
+void leerFilaAcceso(char * fila, Acceso * playa,int cantAtr,char ** atributos,int * a)
+{
+
+	separarFila(fila,cantAtr,atributos);
+	printf("he separado la fila");
+	fflush(stdout);
+
+
+	sscanf(atributos[0],"%i",&(playa->codigo));
+	printf("%i",(playa->codigo));
+				fflush(stdout);
+
+	playa->transporte=atributos[1];
+	printf("%s",playa->transporte);
+			fflush(stdout);
+
+	playa->horario=atributos[3];
+	printf("%s",playa->horario);
+				fflush(stdout);
+
+	printf("he leido la fila");//debug
+		fflush(stdout);
+
+}
+void inicializarAcceso(Acceso ** acceso,int sizeac,int numMax)
+{
+	int j;
+		for(j=0;j<sizeac;j++){
+			acceso[j]->codigo=(int **)malloc(sizeof(int*)*numMax);
+			acceso[j]->transporte=(char **)malloc(sizeof(char *)*numMax);
+			acceso[j]->horario=(char **)malloc(sizeof(char*)*numMax);
+		}
+	}
+void liberarAcceso(Acceso ** acceso,int sizeac)
+{
+	int j;
+		for(j=0;j<sizeac;j++){
+			free(acceso[j]->codigo);
+			free(acceso[j]->transporte);
+			free(acceso[j]->horario);
+		}
+	}
+Acceso * buscarAcceso(Acceso ** acceso,int size,int codigo)
+{
+	int i;
+		for(i=0;i<size;i++){
+			if((acceso[i]->codigo)==codigo)
+			{
+				return acceso[i];
+			}
+		}return NULL;
+	}
+
+//No se como acceder al array y al fichero a la vez para modificar los datos dentro de ellos
+void meterDatosAcceso(Acceso ** acceso,char ***array,int CantAtr,int sizef,int sizeac,FILE * f)
+{
+
+	}
