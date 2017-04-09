@@ -295,6 +295,7 @@ void meterDatosPlaya(Playa ** pl,char ***array,int CantAtr,int sizef,int sizepl,
 	for(i=0;i<sizef;i++){
 		int codigo;
 		sscanf(*(*(array+i)),"%i",&codigo);
+		printf(" ");
 		Playa * p=buscarPlaya(pl,sizepl,codigo);
 
 		int j;
