@@ -435,4 +435,63 @@ void mostrarAcceso(FILE * access, Acceso *ac){
 		printf("Codigo: %i, Transporte: %c, Horario: %c\n", ac[x].codigo, ac[x].transporte, ac[x].horario);
 	}
 }
+void copiarString(char cadena[], int x, Acceso * ac, FILE * access)
+{
+	//Contamos cuántos caracteres hay dentro de la cadena de caracteres
+	int N = strlen(cadena) + 1;
+	//reservo memoria
+	ac[x].codigo = (char*)malloc(N*sizeof(char));//codigo es int y lo que tenemos es una cadena de char's
+
+	strcpy(ac[x].codigo, access);// El error tiene que ver con los punteros
+
+	}
+
+
+void leerActividad(FILE * fa, Actividad ** arraya, int atract, int filaa, char *** atra, int * b){
+
+	int n=0;
+
+	while(n<filaa){
+		char * stract=(char *)malloc(sizeof(char)*200);
+		atra[n]=(char **)maloc(sizeof(char*)*atract);
+		stract=fgets(stract, 200, fa);
+
+		leerFilaActividad(stract, arraya[n],atract, atra[n], b);
+		n++;
+
+	}
+}
+
+
+void leerFilaActividad(char * filaa, Actividad * actividad, int atract, char ** atributosA, int * b){
+
+	separarFila(filaa, atract, atributosA);
+	printf("he separado la fila");
+	fflush(stdout);
+
+	sscanf(atributosA[0], "%i", &(actividad->nombre));
+	printf("%i", (actividad->nombre));
+	fflush(stdout);
+
+	actividad->tipo=atributosA[1];
+	printf("%s", actividad->tipo);
+	fflush(stdout);
+
+	actividad->nombre=atributosA[2];
+	printf("%s", actividad->nombre);
+	fflush(stdout);
+
+}
+
+
+Actividad * buscarActividad(Actividad ** ac,int size,int codigoA, char *nombre)
+{
+	int i;
+	for(i=0;i<size;i++){
+		if((ac[i]->nombre)==nombre)
+		{
+			return ac[i];
+		}
+	}return NULL;
+}
 

@@ -101,14 +101,5 @@ void main(void){
 				liberarAcceso(access, filasAc);//No se cual es el error
 }
 
-void copiarString(char cadena[], int x, Acceso * ac, FILE * access)
-{
-	//Contamos cuántos caracteres hay dentro de la cadena de caracteres
-	int N = strlen(cadena) + 1;
-	//reservo memoria
-	ac[x].codigo = (char*)malloc(N*sizeof(char));
 
-	strcpy(ac[x].codigo, access);// El error tiene que ver con los punteros
-
-	}
 
