@@ -20,7 +20,7 @@ void main(void){
 	printf("\t\tBEACH ADVISOR\n\n");
 	printf("°°°°°°°°°°°°|\ \n°°°°°°°°°°°°|_\ \n°°°°°°°°°°°°|__\ \n°°°°°°°°°°°°|___\ \n°°°°°°°°°°°°|____\°°°°°°\n°°°°°°°°°°°°|_____\°°°°°°\n°°°°°°°°°°°°|______\°°°°°°\n°°°°°°______|_______________\n~~~~\____________________/~~~~\n,.-~*´¨¯¨`*•~-.¸,.-~*´¨¯¨`*•~-.¸,.-~*´¨¯¨`*•~-.¸,.-~*´¨¯¨`*•~-.¸,.-~*\n´¨¯¨`*•~-.¸,.-~*´¨¯¨`*•~-.¸,.-~*´¨¯¨`*•~-.¸,.-~*´ `*•~-.¸,.-~*´`*•~-.¸,.-~*´•~-.¸,.-~*´¨¯¨`*•)\n\n\n\n");
 
-	menuPrincipal(c,opciones,posicionMenu);
+
 	FILE *f;
 	f=fopen("playa.txt","r");
 	int num=contarFilas(f);
@@ -50,6 +50,8 @@ void main(void){
 	printf("salgo");
 	fflush(stdout);
 	fclose(g2);
+	menuPrincipal(c,opciones,posicionMenu);
+	devolverPlayas(opciones,*c,playas,num);
 	imprimirArray(playas,num);
 	//imprimirArray(playas,1);
 	free(opciones);

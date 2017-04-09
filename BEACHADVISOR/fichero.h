@@ -48,6 +48,7 @@ typedef struct{
 	float media;
 }ListaTemperaturaMar;
 typedef struct{
+	int disponibilidad;
 	int  codigo;
 	char * nombrePlaya;
 	Coordenada  coor;
@@ -84,52 +85,55 @@ typedef struct{
 
 typedef struct{
 	Actividad act;
-	Playa * playas;
-
-
+	Playa ** playas;
+	int size;
 }GrupoActividad;
 typedef struct{
 	Acceso ac;
-	Playa * playas;
-
+	Playa ** playas;
+	int size;
 }GrupoAcceso;
 typedef struct{//Playas en las que predromine este tiempo
 	char * tiempo;
-	Playa * playas;
-
-}GrupTiempo;
+	Playa ** playas;
+	int size;
+}GrupoTiempo;
 typedef struct{//Playas en las que predomine esta bandera
 	char * Bandera;
-	Playa * playas;
+	Playa ** playas;
+	int size;
 }GrupoBandera;
 
 typedef struct{//Playas en las que la media de radiacion solar sea
 	int max;
 	int min;
-	Playa * playas;
+	Playa ** playas;
+	int size;
 }GrupoRadiacion;
 typedef struct{//playas en las que la media de temperatura este
 	int max;
 	int min;
-	Playa * playas;
-
+	Playa ** playas;
+	int size;
 }GrupoTempMar;
 typedef struct{
 	float max;
 	float min;
-	Playa * playas;
-
+	Playa ** playas;
+	int size;
 }GrupoOleaje;
 typedef struct{
 	float max;
 	float min;
-	Playa * playas;
+	Playa ** playas;
+	int size;
 }GrupoPeriodoOleaje;
 typedef struct{
-	float max;
-	float min;
-	Playa * playas;
+	char * arena;
+	Playa ** playas;
+	int size;
 }GrupoArena;
+
 
 void leerPlaya(FILE * f,Playa ** array,int cantAtr,int fila,char *** atr,int * a);
 int contarFilas(FILE * f);

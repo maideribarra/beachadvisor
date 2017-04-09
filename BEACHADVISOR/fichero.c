@@ -15,8 +15,8 @@ void leerPlaya(FILE * f,Playa ** array,int cantAtr,int fila,char *** atr,int * a
 	int i=0;
 
 	while(i<fila){
-		printf("leo %i fila",i);
-		fflush(stdout);
+		//printf("leo %i fila",i);
+		//fflush(stdout);
 		char *str=(char *)malloc(sizeof(char)*300);
 		clearIfNeeded(str,300);
 		atr[i]=(char**)malloc(sizeof(char*)*cantAtr);
@@ -85,9 +85,11 @@ void separarFila(char * fila,int cantAtr,char ** atributos){
 				char z;
 				z=fila[p];
 				int tam=a[j];
+				//printf("%i",tam);
+				//fflush(stdout);
 
-				atributos[j]=(char *)malloc(sizeof(char)*tam);
-
+				atributos[j]=(char *)malloc(sizeof(char)*tam+1);
+				//clearIfNeeded(atributos[j],tam);
 
 
 
@@ -100,7 +102,7 @@ void separarFila(char * fila,int cantAtr,char ** atributos){
 					c++;
 					p++;
 					z=fila[p];
-					//printf("%c",z);
+					//printf("%c",*(*(atributos+j)+c));
 					//fflush(stdout);
 					//printf("p %i c %i j %i",p,c,j);
 					//fflush(stdout);
@@ -111,7 +113,7 @@ void separarFila(char * fila,int cantAtr,char ** atributos){
 
 
 				}
-
+				*(*(atributos+j)+c)='\0';
 				p++;
 
 
@@ -177,8 +179,8 @@ void leerFilaPlaya(char * fila,Playa * playa,int cantAtr,char ** atributos,int *
 {
 
 	separarFila(fila,cantAtr,atributos);
-	printf("he separado la fila");
-	fflush(stdout);
+	//printf("he separado la fila");
+	//fflush(stdout);
 
 
 	sscanf(atributos[0],"%i",&(playa->codigo));
@@ -216,8 +218,8 @@ void leerFilaPlaya(char * fila,Playa * playa,int cantAtr,char ** atributos,int *
 
 	(playa->coor).x=coor.x;
 	(playa->coor).y=coor.y;
-	printf("he leido la fila");
-		fflush(stdout);
+	//printf("he leido la fila");
+		//fflush(stdout);
 
 
 

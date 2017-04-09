@@ -145,7 +145,7 @@ void menuArena(int *c,int * opciones,int * p)
 void menuAtmosfericos(int *c,int * opciones,int * p)
 {
 	int i=*c;
-	char * menu3="23.Tiempo soleado\n24.Tiempo nublado\n25.Lluvia\n26.Poca radiación solar.\n";
+	char * menu3="23.Tiempo soleado\n24.Tiempo nublado\n25.Lluvia\n";
 	pedirPorTeclado(menu3,opciones+i);
 	if(opciones[i]=='a'){
 		menuCriterios(opciones,c,p);

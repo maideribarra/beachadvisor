@@ -7,8 +7,8 @@
 #include "fichero.h"
 void imprimirArray(Playa ** arr,int tam)
 {
-	printf("entro imprimir array");
-	fflush(stdout);
+	//printf("entro imprimir array");
+	//fflush(stdout);
 	int i;
 	for(i=0;i<tam;i++){
 		printf("Nombre playa: %s\nCodigo playa: %i\nLocalizacion playa: %s\nProvincia playa: %s\nPais playa: %s\nCoordenada: (%i,%i)\n",arr[i]->nombrePlaya,arr[i]->codigo,arr[i]->loc,arr[i]->provincia,arr[i]->pais,arr[i]->coor.x,arr[i]->coor.y);
@@ -16,8 +16,8 @@ void imprimirArray(Playa ** arr,int tam)
 		char ** tiem=(arr[i]->tiempo).tiempo;
 		int n=((*(arr+i))->tiempo).cant;
 		impchar(tiem,n);
-		printf("\t Tiempo mas repetido %s ",((*(arr+i))->tiempo).tiempo);
-				fflush(stdout);
+		printf("\t Tiempo mas repetido %s ",((*(arr+i))->tiempo).tiempoRepetido);
+		fflush(stdout);
 		printf("Bandera:\n");
 		impchar(((*(arr+i))->bandera).bandera,((*(arr+i))->bandera).cant);
 		printf("\t Bandera mas repetida en esta playa %s\n",((*(arr+i))->bandera).banderaRepetida);
@@ -56,8 +56,8 @@ int estaEn(int *op,int size,int num)
 }
 void impchar(char ** ch,int size)
 {
-	printf("entro imprimir char %i",size);
-	fflush(stdout);
+	//printf("entro imprimir char %i",size);
+	//fflush(stdout);
 	int i;
 	for(i=0;i<(size);i++){
 		printf("%s,",ch[i]);
@@ -68,8 +68,8 @@ void impchar(char ** ch,int size)
 }
 void impint(int * entero,int size)
 {
-	printf("entro imprimir int %i",size);
-		fflush(stdout);
+	//printf("entro imprimir int %i",size);
+		//fflush(stdout);
 	int i;
 	for(i=0;i<(size);i++){
 		printf("%i,",(entero[i]));
@@ -134,8 +134,8 @@ void ponerValorRepetido(Playa ** playas,int size)
 	for(i=0;i<size;i++){
 		Playa * p=playas[i];
 		float temp=mediaaa((p->temperaturaMar).temperaturaMar,(p->temperaturaMar).cant);
-		printf("%f",temp);
-		fflush(stdout);
+		//printf("%f",temp);
+		//fflush(stdout);
 		(p->temperaturaMar).media=temp;
 		float rad=mediaaa((p->radiacionSolar).radiacionSolar,(p->radiacionSolar).cant);
 		(p->radiacionSolar).media=rad;
@@ -144,15 +144,336 @@ void ponerValorRepetido(Playa ** playas,int size)
 		float periodo=mediaaa((p->periodo).periodo,(p->periodo).cant);
 		(p->periodo).media=periodo;
 
-		char * bandera=repetidooo((p->bandera).bandera,(p->bandera).cant);
-		(p->bandera).banderaRepetida=bandera;
 		char * tiempo=repetidooo((p->tiempo).tiempo,(p->tiempo).cant);
 		(p->tiempo).tiempoRepetido=tiempo;
+		char * bandera=repetidooo((p->bandera).bandera,(p->bandera).cant);
+		(p->bandera).banderaRepetida=bandera;
+
 
 
 
 	}
 }
+
+
+GrupoTiempo crearGrupoTiempo(char * tiempo,Playa ** array,int size)
+{
+
+	int c=0;
+	int i;
+	for(i=0;i<size;i++){
+		int l=cadenaIgual(((array[i])->tiempo).tiempoRepetido,tiempo);
+		if(l==1){
+			c++;
+		}
+	}
+	Playa ** grupo=(Playa **)malloc(sizeof(Playa*)*c);
+	int num=0;
+	for(i=0;i<size;i++){
+			int l=cadenaIgual(((array[i])->tiempo).tiempoRepetido,tiempo);
+			if(l==1){
+				grupo[num]=(array[i]);
+				num++;
+			}
+		}
+	GrupoTiempo gt;
+	gt.tiempo=tiempo;
+	gt.playas=grupo;
+	gt.size=num;
+	return gt;
+}
+
+GrupoBandera crearGrupoBandera(char * bandera,Playa ** array,int size)
+{
+	int c=0;
+		int i;
+		for(i=0;i<size;i++){
+			int l=cadenaIgual(((array[i])->bandera).banderaRepetida,bandera);
+			if(l==1){
+				c++;
+			}
+		}
+		Playa ** grupo=(Playa **)malloc(sizeof(Playa*)*c);
+		int num=0;
+		for(i=0;i<size;i++){
+				int l=cadenaIgual(((array[i])->bandera).bandera,bandera);
+				if(l==1){
+					grupo[num]=(array[i]);
+					num++;
+				}
+			}
+		GrupoBandera gb;
+		gb.Bandera=bandera;
+		gb.playas=grupo;
+		gb.size=num;
+		return gb;
+
+}
+
+GrupoArena crearGrupoArena(char * arena,Playa ** array,int size)
+{
+	int c=0;
+		int i;
+		for(i=0;i<size;i++){
+			int l=cadenaIgual(((array[i])->arena),arena);
+			if(l==1){
+				c++;
+			}
+		}
+		Playa ** grupo=(Playa **)malloc(sizeof(Playa*)*c);
+		int num=0;
+		for(i=0;i<size;i++){
+				int l=cadenaIgual(((array[i])->arena),arena);
+				if(l==1){
+					grupo[num]=(array[i]);
+					num++;
+				}
+			}
+		GrupoArena ga;
+		ga.arena=arena;
+		ga.playas=grupo;
+		ga.size=num;
+		return ga;
+
+}
+
+GrupoOleaje crearGrupoOleaje(int min,int max,Playa ** array,int size)
+{
+	int c=0;
+			int i;
+			for(i=0;i<size;i++){
+				if((array[i]->oleaje).media>min && (array[i]->oleaje).media<max ){
+					c++;
+				}
+			}
+			Playa ** grupo=(Playa **)malloc(sizeof(Playa*)*c);
+			int num=0;
+			for(i=0;i<size;i++){
+				if((array[i]->oleaje).media>min && (array[i]->oleaje).media<max ){
+
+						grupo[num]=(array[i]);
+						num++;
+
+				}
+			}
+			GrupoOleaje go;
+			go.max=max;
+			go.min=min;
+			go.playas=grupo;
+			go.size=num;
+			return go;
+
+}
+
+GrupoPeriodoOleaje crearPeriodoOleaje(int min,int max,Playa ** array,int size)
+{
+	int c=0;
+	int i;
+	for(i=0;i<size;i++){
+		if((array[i]->periodo).media>min && (array[i]->periodo).media<max ){
+			c++;
+		}
+	}
+	Playa ** grupo=(Playa **)malloc(sizeof(Playa*)*c);
+	int num=0;
+	for(i=0;i<size;i++){
+		if((array[i]->periodo).media>min && (array[i]->periodo).media<max ){
+
+			grupo[num]=(array[i]);
+			num++;
+
+		}
+	}
+	GrupoPeriodoOleaje gpo;
+	gpo.max=max;
+	gpo.min=min;
+	gpo.playas=grupo;
+	gpo.size=num;
+	return gpo;
+
+}
+
+GrupoRadiacion crearRadiacion(int min,int max,Playa ** array,int size)
+{
+	int c=0;
+		int i;
+		for(i=0;i<size;i++){
+			if((array[i]->radiacionSolar).media>min && (array[i]->radiacionSolar).media<max ){
+				c++;
+			}
+		}
+		Playa ** grupo=(Playa **)malloc(sizeof(Playa*)*c);
+		int num=0;
+		for(i=0;i<size;i++){
+			if((array[i]->radiacionSolar).media>min && (array[i]->radiacionSolar).media<max ){
+
+				grupo[num]=(array[i]);
+				num++;
+
+			}
+		}
+		GrupoRadiacion gr;
+		gr.max=max;
+		gr.min=min;
+		gr.playas=grupo;
+		gr.size=num;
+		return gr;
+
+}
+
+GrupoTempMar crearTemp(int min,int max,Playa ** array,int size)
+{
+	int c=0;
+			int i;
+			for(i=0;i<size;i++){
+				if((array[i]->temperaturaMar).media>min && (array[i]->temperaturaMar).media<max ){
+					c++;
+				}
+			}
+			Playa ** grupo=(Playa **)malloc(sizeof(Playa*)*c);
+			int num=0;
+			for(i=0;i<size;i++){
+				if((array[i]->temperaturaMar).media>min && (array[i]->temperaturaMar).media<max ){
+
+					grupo[num]=(array[i]);
+					num++;
+
+				}
+			}
+			GrupoTempMar gtm;
+			gtm.max=max;
+			gtm.min=min;
+			gtm.playas=grupo;
+			gtm.size=num;
+			return gtm;
+}
+void aumentarCompatibilidad(Playa ** playas,int comp,int size)
+{
+	int i;
+	for(i=0;i<size;i++){
+		playas[i]->disponibilidad=playas[i]->disponibilidad+comp;
+	}
+}
+void inicializarCompatibilidad(Playa ** playas,int size)
+{
+	int i;
+		for(i=0;i<size;i++){
+			playas[i]->disponibilidad=0;
+		}
+}
+void liberarElegidas(Playa *** eleg,int size)
+{
+	int i;
+	for(i=0;i<size;i++){
+		free(eleg[i]);
+	}
+	free(eleg);
+}
+
+void devolverPlayas(int * opciones,int sizeop,Playa ** playas,int tampl)
+{
+	inicializarCompatibilidad(playas,tampl);
+	Playa *** elegidas=(Playa ***)malloc(sizeof(Playa **)*sizeop);
+
+	int i;
+	for(i=0;i<sizeop;i++){
+		if(opciones[i]==5){
+			GrupoTempMar tm=crearTemp(10,16,playas,tampl);
+			elegidas[i]=tm.playas;
+			aumentarCompatibilidad(elegidas[i],5-i,tm.size);
+
+
+		}else if(opciones[i]==6){
+			GrupoTempMar tm=crearTemp(17,20,playas,tampl);
+			elegidas[i]=tm.playas;
+			aumentarCompatibilidad(elegidas[i],5-i,tm.size);
+
+		}else if(opciones[i]==7){
+			GrupoTempMar tm=crearTemp(20,25,playas,tampl);
+			elegidas[i]=tm.playas;
+			aumentarCompatibilidad(elegidas[i],5-i,tm.size);
+
+		}else if(opciones[i]==8){
+			GrupoOleaje o=crearGrupoOleaje(0,1,playas,tampl);
+			elegidas[i]=o.playas;
+			aumentarCompatibilidad(elegidas[i],5-i,o.size);
+
+		}else if(opciones[i]==9){
+			GrupoOleaje o=crearGrupoOleaje(1,2,playas,tampl);
+			elegidas[i]=o.playas;
+			aumentarCompatibilidad(elegidas[i],5-i,o.size);
+
+		}else if(opciones[i]==10){
+			GrupoOleaje o=crearGrupoOleaje(2,3,playas,tampl);
+			elegidas[i]=o.playas;
+			aumentarCompatibilidad(elegidas[i],5-i,o.size);
+
+		}else if(opciones[i]==11){
+			GrupoPeriodoOleaje po=crearPeriodoOleaje(0,9,playas,tampl);
+			elegidas[i]=po.playas;
+			aumentarCompatibilidad(elegidas[i],5-i,po.size);
+		}else if(opciones[i]==12){
+			GrupoPeriodoOleaje po=crearPeriodoOleaje(10,15,playas,tampl);
+			elegidas[i]=po.playas;
+			aumentarCompatibilidad(elegidas[i],5-i,po.size);
+
+		}else if(opciones[i]==13){
+			GrupoPeriodoOleaje po=crearPeriodoOleaje(15,17,playas,tampl);
+			elegidas[i]=po.playas;
+			aumentarCompatibilidad(elegidas[i],5-i,po.size);
+
+		}else if(opciones[i]==17){
+			GrupoBandera b=crearGrupoBandera("rojo",playas,tampl);
+			elegidas[i]=b.playas;
+			aumentarCompatibilidad(elegidas[i],5-i,b.size);
+
+		}else if(opciones[i]==18){
+			GrupoBandera b=crearGrupoBandera("amarillo",playas,tampl);
+			elegidas[i]=b.playas;
+			aumentarCompatibilidad(elegidas[i],5-i,b.size);
+
+		}else if(opciones[i]==19){
+			GrupoBandera b=crearGrupoBandera("verde",playas,tampl);
+			elegidas[i]=b.playas;
+			aumentarCompatibilidad(elegidas[i],5-i,b.size);
+
+		}else if(opciones[i]==20){
+			GrupoArena ga=crearGrupoArena("natural",playas,tampl);
+			elegidas[i]=ga.playas;
+			aumentarCompatibilidad(elegidas[i],5-i,ga.size);
+		}else if(opciones[i]==21){
+			GrupoArena ga=crearGrupoArena("artificial",playas,tampl);
+			elegidas[i]=ga.playas;
+			aumentarCompatibilidad(elegidas[i],5-i,ga.size);
+
+		}else if(opciones[i]==22){
+			GrupoArena ga=crearGrupoArena("piedras",playas,tampl);
+			elegidas[i]=ga.playas;
+			aumentarCompatibilidad(elegidas[i],5-i,ga.size);
+
+		}else if(opciones[i]==23){
+			GrupoTiempo t=crearGrupoTiempo("soleado",playas,tampl);
+			elegidas[i]=t.playas;
+			aumentarCompatibilidad(elegidas[i],5-i,t.size);
+
+		}else if(opciones[i]==24){
+			GrupoTiempo t=crearGrupoTiempo("nublado",playas,tampl);
+			elegidas[i]=t.playas;
+			aumentarCompatibilidad(elegidas[i],5-i,t.size);
+
+		}else if(opciones[i]==25){
+			GrupoTiempo t=crearGrupoTiempo("lluvioso",playas,tampl);
+			elegidas[i]=t.playas;
+			aumentarCompatibilidad(elegidas[i],5-i,t.size);
+
+		}else{
+
+		}
+	}
+	liberarElegidas(elegidas,sizeop);
+
+}
+
 
 
 
