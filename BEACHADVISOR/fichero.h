@@ -22,6 +22,7 @@ typedef struct{
 	char * tiempoRepetido;
 
 }ListaTiempo;
+
 typedef struct{
 	int * radiacionSolar;
 	int cant;
@@ -149,14 +150,18 @@ void inicializarPlayas(Playa ** pl,int sizepl,int numMax);
 void liberarPlayas(Playa ** pl,int sizepl);
 void meterDatosPlaya(Playa ** pl,char ***array,int CantAtr,int sizef,int sizepl,FILE * f);
 
-
-
 void leerAcceso(FILE * f,Acceso ** array,int cantAtr,int fila,char *** atr,int * a);
-void leerFilaAcceso(char * fila,Acceso * playa,int cantAtr,char ** atributos,int * a);
+void leerFilaAcceso(char * fila,Acceso * acceso,int cantAtr,char ** atributos,int * a);
 void inicializarAcceso(Acceso ** acceso,int sizeac,int numMax);
 void liberarAcceso(Acceso ** acceso,int sizeac);
 Acceso * buscarAcceso(Acceso ** acceso,int size,int codigo);
 void meterDatosAcceso(Acceso ** acceso,char ***array,int CantAtr,int sizef,int sizeac,FILE * f);
+void mostrarAcceso(FILE * access, Acceso *ac);
+void copiarString(char cadena[], int x, Acceso * ac, FILE * access);
+
+void leerActividad(FILE * fa, Actividad ** arraya, int atract, int filaa, char *** atra, int * b);
+void leerFilaActividad(char * filaa, Actividad * actividad, int atract, char ** atributosA, int * b);
+Actividad * buscarActividad(Actividad ** ac,int size,int codigoA, char * nombre);
 
 
 #endif /* FICHERO_H_ */

@@ -9,6 +9,8 @@
 #include"menu.h"
 #include "fichero.h"
 #include "busqueda.h"
+
+Acceso * ac;
 void main(void){
 	int * posicionMenu=(int*)malloc(sizeof(int)*4);
 	int *opciones=(int *)malloc(sizeof(int)*5);
@@ -78,7 +80,24 @@ void main(void){
 	//printf("salgo5");
 	//fflush(stdout);
 
+		//Lectura del Fichero de modo de acceso
 
-
+			FILE *access;
+			access=fopen("acceso.txt","r");
+			if(a==NULL)
+			{
+				printf("No se ha podido abrir el fichero\n");
+				fflush(stdout);
+				exit(1);
+			}
+			int filasAc=contarFilas(access);
+				//Una vez tenemos el número de filas del fichero, colocamos el cursor al inicio del fichero
+				rewind(access);
+				//reservamos memoria para el fichero
+				ac=(Acceso*)malloc(filasAc*sizeof(Acceso));
+				mostrarAcceso(access, ac);
+				liberarAcceso(access, filasAc);//No se cual es el error
 }
+
+
 
