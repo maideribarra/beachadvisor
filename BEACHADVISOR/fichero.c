@@ -357,7 +357,7 @@ void leerAcceso(FILE * f, Acceso ** array,int cantAtr,int fila,char *** atr,int 
 
 	}
 }
-void leerFilaAcceso(char * fila, Acceso * playa,int cantAtr,char ** atributos,int * a)
+void leerFilaAcceso(char * fila, Acceso * acceso,int cantAtr,char ** atributos,int * a)
 {
 
 	separarFila(fila,cantAtr,atributos);
@@ -365,16 +365,16 @@ void leerFilaAcceso(char * fila, Acceso * playa,int cantAtr,char ** atributos,in
 	fflush(stdout);
 
 
-	sscanf(atributos[0],"%i",&(playa->codigo));
-	printf("%i",(playa->codigo));
+	sscanf(atributos[0],"%i",&(acceso->codigo));
+	printf("%i",(acceso->codigo));
 				fflush(stdout);
 
-	playa->transporte=atributos[1];
-	printf("%s",playa->transporte);
+	acceso->transporte=atributos[1];
+	printf("%s",acceso->transporte);
 			fflush(stdout);
 
-	playa->horario=atributos[3];
-	printf("%s",playa->horario);
+	acceso->horario=atributos[3];
+	printf("%s",acceso->horario);
 				fflush(stdout);
 
 	printf("he leido la fila");//debug
@@ -411,7 +411,28 @@ Acceso * buscarAcceso(Acceso ** acceso,int size,int codigo)
 	}
 
 //No se como acceder al array y al fichero a la vez para modificar los datos dentro de ellos
-void meterDatosAcceso(Acceso ** acceso,char ***array,int CantAtr,int sizef,int sizeac,FILE * f)
-{
 
+void mostrarAcceso(FILE * access, Acceso *ac){
+	char aux;
+	char cadena[50];
+	int x,y;
+
+	//Lectura y colocación de lo leido en la estructura
+	for(x = 0 ; !feof(access) ; x++)
+	{
+		aux='0';
+		for(y = 0 ; aux != ',' ; y++)
+		{
+			aux = fgetc(access);
+			if(aux != ',')
+			{
+				cadena[y] = aux;
+			}
+		}
+		copiarString(cadena, x, ac, access);
+		fgets(cadena, 50, access);
+		ac[x].codigo=atoi(cadena);
+		printf("Codigo: %i, Transporte: %c, Horario: %c\n", ac[x].codigo, ac[x].transporte, ac[x].horario);
 	}
+}
+
