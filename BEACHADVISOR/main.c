@@ -54,6 +54,7 @@ void main(void){
 	fclose(g2);
 	menuPrincipal(c,opciones,posicionMenu);
 	devolverPlayas(opciones,*c,playas,num);
+	ordenarPlayas(playas,num);
 	imprimirArray(playas,num);
 	//imprimirArray(playas,1);
 	free(opciones);
@@ -82,21 +83,21 @@ void main(void){
 
 		//Lectura del Fichero de modo de acceso
 
-			FILE *access;
-			access=fopen("acceso.txt","r");
-			if(a==NULL)
-			{
-				printf("No se ha podido abrir el fichero\n");
-				fflush(stdout);
-				exit(1);
-			}
-			int filasAc=contarFilas(access);
+			//FILE *access;
+			//access=fopen("acceso.txt","r");
+			//if(a==NULL)
+			//{
+				//printf("No se ha podido abrir el fichero\n");
+				//fflush(stdout);
+				//exit(1);
+			//}
+			//int filasAc=contarFilas(access);
 				//Una vez tenemos el número de filas del fichero, colocamos el cursor al inicio del fichero
-				rewind(access);
+				//rewind(access);
 				//reservamos memoria para el fichero
-				ac=(Acceso*)malloc(filasAc*sizeof(Acceso));
-				mostrarAcceso(access, ac);
-				liberarAcceso(access, filasAc);//No se cual es el error
+				//ac=(Acceso*)malloc(filasAc*sizeof(Acceso));
+				//mostrarAcceso(access, ac);
+				//liberarAcceso(access, filasAc);//No se cual es el error
 }
 
 

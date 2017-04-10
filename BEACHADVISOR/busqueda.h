@@ -27,4 +27,5 @@ GrupoOleaje crearGrupoOleaje(int min,int max,Playa ** array,int size);
 GrupoArena crearGrupoArena(char * arena,Playa ** array,int size);
 GrupoBandera crearGrupoBandera(char * bandera,Playa ** array,int size);
 GrupoTiempo crearGrupoTiempo(char * tiempo,Playa ** array,int size);
+void ordenarPlayas(Playa** playas,int size);
 #endif /* BUSQUEDA_H_ */

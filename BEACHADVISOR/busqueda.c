@@ -12,6 +12,7 @@ void imprimirArray(Playa ** arr,int tam)
 	int i;
 	for(i=0;i<tam;i++){
 		printf("Nombre playa: %s\nCodigo playa: %i\nLocalizacion playa: %s\nProvincia playa: %s\nPais playa: %s\nCoordenada: (%i,%i)\n",arr[i]->nombrePlaya,arr[i]->codigo,arr[i]->loc,arr[i]->provincia,arr[i]->pais,arr[i]->coor.x,arr[i]->coor.y);
+		printf("Compatibilidad de la playa: %i",(*(arr+i))->disponibilidad);
 		printf("Tiempo:\n");
 		char ** tiem=(arr[i]->tiempo).tiempo;
 		int n=((*(arr+i))->tiempo).cant;
@@ -196,7 +197,7 @@ GrupoBandera crearGrupoBandera(char * bandera,Playa ** array,int size)
 		Playa ** grupo=(Playa **)malloc(sizeof(Playa*)*c);
 		int num=0;
 		for(i=0;i<size;i++){
-				int l=cadenaIgual(((array[i])->bandera).bandera,bandera);
+				int l=cadenaIgual(((array[i])->bandera).banderaRepetida,bandera);
 				if(l==1){
 					grupo[num]=(array[i]);
 					num++;
@@ -242,14 +243,14 @@ GrupoOleaje crearGrupoOleaje(int min,int max,Playa ** array,int size)
 	int c=0;
 			int i;
 			for(i=0;i<size;i++){
-				if((array[i]->oleaje).media>min && (array[i]->oleaje).media<max ){
+				if((array[i]->oleaje).media>=min && (array[i]->oleaje).media<=max ){
 					c++;
 				}
 			}
 			Playa ** grupo=(Playa **)malloc(sizeof(Playa*)*c);
 			int num=0;
 			for(i=0;i<size;i++){
-				if((array[i]->oleaje).media>min && (array[i]->oleaje).media<max ){
+				if((array[i]->oleaje).media>=min && (array[i]->oleaje).media<=max ){
 
 						grupo[num]=(array[i]);
 						num++;
@@ -351,7 +352,10 @@ void aumentarCompatibilidad(Playa ** playas,int comp,int size)
 {
 	int i;
 	for(i=0;i<size;i++){
-		playas[i]->disponibilidad=playas[i]->disponibilidad+comp;
+		playas[i]->disponibilidad=(playas[i]->disponibilidad)+comp;
+		printf("compatibilidad %i",(playas[i]->disponibilidad)+comp);
+		fflush(stdout);
+
 	}
 }
 void inicializarCompatibilidad(Playa ** playas,int size)
@@ -377,93 +381,131 @@ void devolverPlayas(int * opciones,int sizeop,Playa ** playas,int tampl)
 
 	int i;
 	for(i=0;i<sizeop;i++){
+		printf("opcion %i\n",opciones[i]);
+		fflush(stdout);
 		if(opciones[i]==5){
 			GrupoTempMar tm=crearTemp(10,16,playas,tampl);
 			elegidas[i]=tm.playas;
+			printf("%i",tm.size);
+			fflush(stdout);
 			aumentarCompatibilidad(elegidas[i],5-i,tm.size);
 
 
 		}else if(opciones[i]==6){
 			GrupoTempMar tm=crearTemp(17,20,playas,tampl);
 			elegidas[i]=tm.playas;
+			printf("%i",tm.size);
+						fflush(stdout);
 			aumentarCompatibilidad(elegidas[i],5-i,tm.size);
 
 		}else if(opciones[i]==7){
 			GrupoTempMar tm=crearTemp(20,25,playas,tampl);
 			elegidas[i]=tm.playas;
+			printf("%i",tm.size);
+						fflush(stdout);
 			aumentarCompatibilidad(elegidas[i],5-i,tm.size);
 
 		}else if(opciones[i]==8){
 			GrupoOleaje o=crearGrupoOleaje(0,1,playas,tampl);
 			elegidas[i]=o.playas;
+			printf("%i",o.size);
+						fflush(stdout);
 			aumentarCompatibilidad(elegidas[i],5-i,o.size);
 
 		}else if(opciones[i]==9){
 			GrupoOleaje o=crearGrupoOleaje(1,2,playas,tampl);
 			elegidas[i]=o.playas;
+			printf("%i",o.size);
+						fflush(stdout);
 			aumentarCompatibilidad(elegidas[i],5-i,o.size);
 
 		}else if(opciones[i]==10){
 			GrupoOleaje o=crearGrupoOleaje(2,3,playas,tampl);
 			elegidas[i]=o.playas;
+			printf("%i",o.size);
+						fflush(stdout);
 			aumentarCompatibilidad(elegidas[i],5-i,o.size);
 
 		}else if(opciones[i]==11){
 			GrupoPeriodoOleaje po=crearPeriodoOleaje(0,9,playas,tampl);
 			elegidas[i]=po.playas;
+			printf("%i",po.size);
+						fflush(stdout);
 			aumentarCompatibilidad(elegidas[i],5-i,po.size);
 		}else if(opciones[i]==12){
 			GrupoPeriodoOleaje po=crearPeriodoOleaje(10,15,playas,tampl);
 			elegidas[i]=po.playas;
+			printf("%i",po.size);
+						fflush(stdout);
 			aumentarCompatibilidad(elegidas[i],5-i,po.size);
 
 		}else if(opciones[i]==13){
-			GrupoPeriodoOleaje po=crearPeriodoOleaje(15,17,playas,tampl);
+			GrupoPeriodoOleaje po=crearPeriodoOleaje(15,100,playas,tampl);
 			elegidas[i]=po.playas;
+			printf("%i",po.size);
+						fflush(stdout);
 			aumentarCompatibilidad(elegidas[i],5-i,po.size);
 
 		}else if(opciones[i]==17){
 			GrupoBandera b=crearGrupoBandera("rojo",playas,tampl);
 			elegidas[i]=b.playas;
+			printf("%i",b.size);
+						fflush(stdout);
 			aumentarCompatibilidad(elegidas[i],5-i,b.size);
 
 		}else if(opciones[i]==18){
 			GrupoBandera b=crearGrupoBandera("amarillo",playas,tampl);
 			elegidas[i]=b.playas;
+			printf("%i",b.size);
+						fflush(stdout);
 			aumentarCompatibilidad(elegidas[i],5-i,b.size);
 
 		}else if(opciones[i]==19){
 			GrupoBandera b=crearGrupoBandera("verde",playas,tampl);
 			elegidas[i]=b.playas;
+			printf("%i",b.size);
+						fflush(stdout);
 			aumentarCompatibilidad(elegidas[i],5-i,b.size);
 
 		}else if(opciones[i]==20){
 			GrupoArena ga=crearGrupoArena("natural",playas,tampl);
 			elegidas[i]=ga.playas;
+			printf("%i",ga.size);
+						fflush(stdout);
 			aumentarCompatibilidad(elegidas[i],5-i,ga.size);
 		}else if(opciones[i]==21){
 			GrupoArena ga=crearGrupoArena("artificial",playas,tampl);
 			elegidas[i]=ga.playas;
+			printf("%i",ga.size);
+						fflush(stdout);
 			aumentarCompatibilidad(elegidas[i],5-i,ga.size);
 
 		}else if(opciones[i]==22){
 			GrupoArena ga=crearGrupoArena("piedras",playas,tampl);
 			elegidas[i]=ga.playas;
+			printf("%i",ga.size);
+						fflush(stdout);
 			aumentarCompatibilidad(elegidas[i],5-i,ga.size);
 
 		}else if(opciones[i]==23){
 			GrupoTiempo t=crearGrupoTiempo("soleado",playas,tampl);
 			elegidas[i]=t.playas;
+			printf("%i",t.size);
+						fflush(stdout);
 			aumentarCompatibilidad(elegidas[i],5-i,t.size);
 
 		}else if(opciones[i]==24){
 			GrupoTiempo t=crearGrupoTiempo("nublado",playas,tampl);
 			elegidas[i]=t.playas;
+			printf("%i",t.size);
+						fflush(stdout);
 			aumentarCompatibilidad(elegidas[i],5-i,t.size);
 
 		}else if(opciones[i]==25){
 			GrupoTiempo t=crearGrupoTiempo("lluvioso",playas,tampl);
 			elegidas[i]=t.playas;
+			printf("%i",t.size);
+						fflush(stdout);
 			aumentarCompatibilidad(elegidas[i],5-i,t.size);
 
 		}else{
@@ -472,6 +514,22 @@ void devolverPlayas(int * opciones,int sizeop,Playa ** playas,int tampl)
 	}
 	liberarElegidas(elegidas,sizeop);
 
+}
+void ordenarPlayas(Playa** playas,int size)//metodo burbuja
+{
+	int i;
+	for(i=0;i<size;i++){
+		int j;
+		for(j=0;j<(size-1);j++){
+			if((playas[j]->disponibilidad)<(playas[j+1]->disponibilidad)){
+				Playa * p=playas[j];
+				playas[j]=playas[j+1];
+				playas[j+1]=p;
+
+
+			}
+		}
+	}
 }
 
 
