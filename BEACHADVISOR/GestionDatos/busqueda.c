@@ -531,6 +531,20 @@ void ordenarPlayas(Playa** playas,int size)//metodo burbuja, ordena las playas d
 		}
 	}
 }
+void escribirarray(Playa ** array,int size,FILE * f){
+	fputc(size,f);
+	fwrite(array,sizeof(Playa*),size,f);
+	fclose(f);
+}
+void leerarray(FILE * f,Playa ** array,int size){
+	int tama;
+	tama=fgetc(f);
+	printf("%i",tama);
+	fread(array, sizeof(Playa *), tama, f);
+	int i;
+	imprimirArray(array,tama);
+	fclose(f);
+}
 
 
 

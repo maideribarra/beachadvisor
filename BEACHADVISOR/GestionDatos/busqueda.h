@@ -28,4 +28,6 @@ GrupoArena crearGrupoArena(char * arena,Playa ** array,int size);
 GrupoBandera crearGrupoBandera(char * bandera,Playa ** array,int size);
 GrupoTiempo crearGrupoTiempo(char * tiempo,Playa ** array,int size);
 void ordenarPlayas(Playa** playas,int size);
+void escribirarray(Playa ** array,int size,FILE * f);
+void leerarray(FILE * f,Playa ** array,int size);
 #endif /* BUSQUEDA_H_ */

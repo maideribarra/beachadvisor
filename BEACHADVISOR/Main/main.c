@@ -56,20 +56,19 @@ void main(void){
 	devolverPlayas(opciones,*c,playas,num);//pone en cada playa la compatibilidad que tiene con la busqueda elegida por el usuario
 	ordenarPlayas(playas,num);//ordena las playas segun su compatibilidad
 	imprimirArray(playas,num);//imprime las playas
-	//imprimirArray(playas,1);
+	Playa ** resultadoplayas=(Playa **)malloc(sizeof(Playa *)*num);
+	FILE *z=fopen("playas.dat","wb");
+	escribirarray(playas,num,z);
+	FILE *d=fopen("playas.dat","rb");
+	leerarray(d,resultadoplayas,num);
 	free(opciones);
 	free(posicionMenu);
-	//printf("salgo1");
-	//fflush(stdout);
 	liberarPlayas(playas,num);
-	//printf("salgo2");
-	//fflush(stdout);
 	for(j=0;j<num;j++){
 			free(playas[j]);
 		}
-	//printf("salgo3");
-	//fflush(stdout);
 	free(playas);
+	free(resultadoplayas);
 	//printf("salgo4");
 	//fflush(stdout);
 	//printf("%i",num);
@@ -98,6 +97,10 @@ void main(void){
 				//ac=(Acceso*)malloc(filasAc*sizeof(Acceso));
 				//mostrarAcceso(access, ac);
 				//liberarAcceso(access, filasAc);//No se cual es el error
+	int salida;
+	do{
+	pedirPorTeclado("Pulse s para salir",&salida);
+	}while(salida!='s');
 }
 
 
