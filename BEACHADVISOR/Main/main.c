@@ -6,9 +6,9 @@
  */
 #include<stdlib.h>
 #include<stdio.h>
-#include"menu.h"
-#include "fichero.h"
-#include "busqueda.h"
+#include"../interaccionUsuario/menu.h"
+#include "../GestionDatos/fichero.h"
+#include "../GestionDatos/busqueda.h"
 
 Acceso * ac;
 void main(void){
@@ -35,27 +35,27 @@ void main(void){
 	FILE *h;
 	h=fopen("playa.txt","r");
 	char *** atr=(char ***)malloc(sizeof(char**)*num);
-	printf("leer playa");
-	fflush(stdout);
+	//printf("leer playa");
+	//fflush(stdout);
 	int * a;
-	leerPlaya(h,playas,8,num,atr,a);
-	printf("\nempiezo datos playa");
-	fflush(stdout);
+	leerPlaya(h,playas,8,num,atr,a);//crea las playas e introduce los datos del fichero playa.
+	//printf("\nempiezo datos playa");
+	//fflush(stdout);
 	fclose(h);
 	FILE * g=fopen("datosPlaya.txt","r");
 	int num2=contarFilas(g);
 	char *** datosplaya=(char ***)malloc(sizeof(char**)*num2);
 	fclose(g);
 	FILE * g2=fopen("datosPlaya.txt","r");
-	meterDatosPlaya(playas,datosplaya,7,num2,num,g2);
-	ponerValorRepetido(playas,num);
-	printf("salgo");
-	fflush(stdout);
+	meterDatosPlaya(playas,datosplaya,7,num2,num,g2);//mete en la playa correspondiente los datos del fichero datosPlaya
+	ponerValorRepetido(playas,num);//pone en las listas(estructuras de la playa) el valor medio y los datos mas repetidos para despues hacer la busqueda segun esos datos
+	//printf("salgo");
+	//fflush(stdout);
 	fclose(g2);
-	menuPrincipal(c,opciones,posicionMenu);
-	devolverPlayas(opciones,*c,playas,num);
-	ordenarPlayas(playas,num);
-	imprimirArray(playas,num);
+	menuPrincipal(c,opciones,posicionMenu);//el usuario elige las prioridades de busqueda y se lanza el menu
+	devolverPlayas(opciones,*c,playas,num);//pone en cada playa la compatibilidad que tiene con la busqueda elegida por el usuario
+	ordenarPlayas(playas,num);//ordena las playas segun su compatibilidad
+	imprimirArray(playas,num);//imprime las playas
 	//imprimirArray(playas,1);
 	free(opciones);
 	free(posicionMenu);

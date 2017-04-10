@@ -7,8 +7,8 @@
 #include<stdlib.h>
 #include<stdio.h>
 #include "string.h"
-#include "busqueda.h"
-void pedirPorTeclado(char * pregunta,int * variable){//si mete una letra peta
+#include "../GestionDatos/busqueda.h"
+void pedirPorTeclado(char * pregunta,int * variable){
 	char str[5];
 	clearIfNeeded(str,5);
 	printf("%s",pregunta);
@@ -21,14 +21,14 @@ void pedirPorTeclado(char * pregunta,int * variable){//si mete una letra peta
 	for(i=0;i<5;i++){
 		if(str[i]==115){//para la s
 			*variable=115;
-		}if(str[i]==97){
+		}if(str[i]==97){//para la en el menu va para atras al pulsar la a
 			*variable=97;
 		}
 	}
 }
 
 
-void imprimirOpciones(int * array,int size)
+void imprimirOpciones(int * array,int size)//imprime las prioridades que has elegido para la busqueda
 {
 	printf("Has elegido las siguientes prioridades de busqueda:\n");
 	fflush(stdout);
@@ -47,7 +47,7 @@ void menuTemperatura(int *c,int * opciones,int * p)
 	if(opciones[i]=='a'){
 		menuDatosMar(p,c,opciones);
 	}else if(estaEn(opciones,*c,opciones[i])==1){
-		printf("Ya has marcado esta opción antes");
+		printf("Ya has marcado esta opción antes\n");
 				menuTemperatura(c,opciones,p);
 
 	}else if(opciones[i]=='s'){
@@ -56,7 +56,7 @@ void menuTemperatura(int *c,int * opciones,int * p)
 	else if(opciones[i]>4 && opciones[i]<8){
 		*c=*c+1;
 	}else{
-		printf("El numero marcado no esta disponible en el menu.");
+		printf("El numero marcado no esta disponible en el menu.\n");
 		menuTemperatura(c,opciones,p);
 	}
 
@@ -70,7 +70,7 @@ void menuOleaje(int *c,int * opciones,int * p)
 	if(opciones[i]=='a'){
 		menuDatosMar(p,c,opciones);
 	}else if(estaEn(opciones,*c,opciones[i])==1){
-		printf("Ya has marcado esta opción antes");
+		printf("Ya has marcado esta opción antes\n");
 		menuOleaje(c,opciones,p);
 
 	}else if(opciones[i]=='s'){
@@ -78,7 +78,7 @@ void menuOleaje(int *c,int * opciones,int * p)
 	}else if(opciones[i]>7 && opciones[i]<11){
 		*c=*c+1;
 	}else{
-		printf("El numero marcado no esta disponible en el menu.");
+		printf("El numero marcado no esta disponible en el menu.\n");
 		menuOleaje(c,opciones,p);
 	}
 }
@@ -90,7 +90,7 @@ void menuPeriodoOleaje(int *c,int * opciones,int * p)
 	if(opciones[i]=='a'){
 		menuDatosMar(p,c,opciones);
 	}else if(estaEn(opciones,*c,opciones[i])==1){
-		printf("Ya has marcado esta opción antes");
+		printf("Ya has marcado esta opción antes\n");
 		menuPeriodoOleaje(c,opciones, p);
 
 	}else if(opciones[i]=='s'){
@@ -98,7 +98,7 @@ void menuPeriodoOleaje(int *c,int * opciones,int * p)
 	}else if(opciones[i]>10 && opciones[i]<14){
 		*c=*c+1;
 	}else{
-		printf("El numero marcado no esta disponible en el menu.");
+		printf("El numero marcado no esta disponible en el menu.\n");
 		menuPeriodoOleaje(c,opciones, p);
 	}
 }
@@ -110,7 +110,7 @@ void menuBandera(int *c,int * opciones,int * p)
 	if(opciones[i]=='a'){
 		menuDatosMar(p,c,opciones);
 	}else if(estaEn(opciones,*c,opciones[i])==1){
-		printf("Ya has marcado esta opción antes");
+		printf("Ya has marcado esta opción antes\n");
 		menuBandera(c,opciones,p);
 
 	}else if(opciones[i]=='s'){
@@ -118,19 +118,19 @@ void menuBandera(int *c,int * opciones,int * p)
 	}else if(opciones[i]>16 && opciones[i]<20){
 		*c=*c+1;
 	}else{
-		printf("El numero marcado no esta disponible en el menu.");
+		printf("El numero marcado no esta disponible en el menu.\n");
 		menuBandera(c,opciones,p);
 	}
 }
 void menuArena(int *c,int * opciones,int * p)
 {
 	int i=*c;
-	char * menu3="20.Arena natural\n21.Arena artificial\n22.Piedras";
+	char * menu3="20.Arena natural\n21.Arena artificial\n22.Piedras\n";
 	pedirPorTeclado(menu3,opciones+i);
 	if(opciones[i]=='a'){
 		menuCriterios(opciones,c,p);
 	}else if(estaEn(opciones,*c,opciones[i])==1){
-		printf("Ya has marcado esta opción antes");
+		printf("Ya has marcado esta opción antes\n");
 		menuArena(c,opciones,p);
 
 	}else if(opciones[i]=='s'){
@@ -138,7 +138,7 @@ void menuArena(int *c,int * opciones,int * p)
 	}else if(opciones[i]>19 && opciones[i]<23){
 		*c=*c+1;
 	}else{
-		printf("El numero marcado no esta disponible en el menu.");
+		printf("El numero marcado no esta disponible en el menu.\n");
 		menuArena(c,opciones,p);
 	}
 }
@@ -150,7 +150,7 @@ void menuAtmosfericos(int *c,int * opciones,int * p)
 	if(opciones[i]=='a'){
 		menuCriterios(opciones,c,p);
 	}else if(estaEn(opciones,*c,opciones[i])==1){
-		printf("Ya has marcado esta opción antes");
+		printf("Ya has marcado esta opción antes\n");
 		menuAtmosfericos(c,opciones,p);
 
 	}else if(opciones[i]=='s'){
@@ -158,19 +158,19 @@ void menuAtmosfericos(int *c,int * opciones,int * p)
 	}else if(opciones[i]>22 && opciones[i]<27){
 		*c=*c+1;
 	}else{
-		printf("El numero marcado no esta disponible en el menu.");
+		printf("El numero marcado no esta disponible en el menu.\n");
 		menuAtmosfericos(c,opciones,p);
 	}
 }
 void menuAcceso(int *c,int * opciones,int * p)
 {
 	int i=*c;
-	char * menu3="27.Metro\n28.Tren\n29.Bus\n30.Coche";
+	char * menu3="27.Metro\n28.Tren\n29.Bus\n30.Coche\n";
 	pedirPorTeclado(menu3,opciones+i);
 	if(opciones[i]=='a'){
 		menuCriterios(opciones,c,p);
 	}else if(estaEn(opciones,*c,opciones[i])==1){
-		printf("Ya has marcado esta opción antes");
+		printf("Ya has marcado esta opción antes\n");
 		menuAcceso(c,opciones,p);
 
 	}else if(opciones[i]=='s'){
@@ -178,7 +178,7 @@ void menuAcceso(int *c,int * opciones,int * p)
 	}else if(opciones[i]>26 && opciones[i]<31){
 		*c=*c+1;
 	}else{
-		printf("El numero marcado no esta disponible en el menu.");
+		printf("El numero marcado no esta disponible en el menu.\n");
 		menuAcceso(c,opciones,p);
 	}
 }
@@ -190,22 +190,22 @@ void menuAcctividad(int *c,int * opciones,int * p)
 	if(opciones[i]=='a'){
 		menuCriterios(opciones,c,p);
 	}else if(estaEn(opciones,*c,opciones[i])==1){
-		printf("Ya has marcado esta opción antes");
+		printf("Ya has marcado esta opción antes\n");
 		menuAcctividad(c,opciones,p);
 	}else if(opciones[i]=='s'){
 		menuPrincipal(c,opciones,p);
 	}else if(opciones[i]>0 && opciones[i]<5){
 		*c=*c+1;
 	}else{
-		printf("El numero marcado no esta disponible en el menu.");
+		printf("El numero marcado no esta disponible en el menu.\n");
 		menuAcctividad(c,opciones,p);
 	}
 }
 void menuCriterios(int * opciones,int * c,int * p)
 {
-	char * menu2="Seleccione el siguiente criterio de ordenación de la búsqueda \n-1.Actividad\n-2.Datos del mar\n-3.Arena\n-4.Atmosféricos\n-5.Modo de acceso\nCuando acabe de elegir las prioridades pulse 's'\nComo maximo puede elegir 5 prioridades";
+	char * menu2="Seleccione el siguiente criterio de ordenación de la búsqueda \n-1.Actividad\n-2.Datos del mar\n-3.Arena\n-4.Atmosféricos\n-5.Modo de acceso\nCuando acabe de elegir las prioridades pulse 's'\nSi quiere volver al menu anterior pulse 'a' en culaquier menu del programa.\nComo maximo puede elegir 5 prioridades\n";
 	pedirPorTeclado(menu2,p+1);
-	printf("%i\n ",p[1]);
+	//printf("%i\n ",p[1]);
 			if(p[1]==1){
 				menuAcctividad(c,opciones,p);
 
@@ -232,7 +232,7 @@ void menuCriterios(int * opciones,int * c,int * p)
 
 			}else{
 				//printf("%i",num1);
-				printf("El numero marcado no esta disponible en el menu.");
+				printf("El numero marcado no esta disponible en el menu.\n");
 				menuCriterios(opciones,c,p);
 			}
 
@@ -260,7 +260,7 @@ void menuDatosMar(int *p,int *c,int *opciones)
 					p[0]='s';
 
 				}else{
-					printf("El numero marcado no esta disponible en el menu.");
+					printf("El numero marcado no esta disponible en el menu.\n");
 					menuDatosMar(p,c,opciones);
 
 
@@ -270,7 +270,7 @@ void menuDatosMar(int *p,int *c,int *opciones)
 void menuPrincipal(int *c,int *opciones,int *p)
 {
 
-	char * menu1="¿Qué deeesea, buscar datos del dia de hoy o tendencias y pronósticos?\n(Si quiere buscar datos de hoy pulse 1, si desea buscar tendencias y pronósticos pulse 2\n, si quiere dejar algún comentario de una playa pulse 3, si desea salir pulse 4).";
+	char * menu1="\n¿Qué desea, buscar datos del dia de hoy o tendencias y pronósticos?\nSi quiere buscar datos de hoy pulse 1\nSi desea buscar tendencias y pronósticos pulse 2\nSi quiere dejar algún comentario de una playa pulse 3 \nSi desea salir pulse 4.\n";
 
 	while(p[0]!=4 && p[0]!='s'){
 

@@ -7,7 +7,7 @@
 
 #include "fichero.h"
 
-void leerPlaya(FILE * f,Playa ** array,int cantAtr,int fila,char *** atr,int * a)//array de punteros a playas
+void leerPlaya(FILE * f,Playa ** array,int cantAtr,int fila,char *** atr,int * a)//lee el fichero playas y mete los datos en el array de playas
 {
 
 
@@ -32,7 +32,7 @@ void leerPlaya(FILE * f,Playa ** array,int cantAtr,int fila,char *** atr,int * a
 
 }
 
-int contarFilas(FILE * f)
+int contarFilas(FILE * f)//cuenta cuantas filas tiene el fichero
 {
 	int c=0;
 	int num;
@@ -44,7 +44,7 @@ int contarFilas(FILE * f)
 		}
 	return c+1;
 }
-int * tamayoo(char * fila,int cantAtr){
+int * tamayoo(char * fila,int cantAtr){//devuelve una array de enteros con el tamaño de cada palabra del fichero separado por comas.
 	int * a=(int *)malloc(sizeof(int)*cantAtr);
 	int t=0;
 	int i=-1;
@@ -71,7 +71,7 @@ int * tamayoo(char * fila,int cantAtr){
 	return a;
 }
 
-void separarFila(char * fila,int cantAtr,char ** atributos){
+void separarFila(char * fila,int cantAtr,char ** atributos){//guarda los datos de una fila del fichero en un array de string,cada campo separado por comas en un indice del array
 
 
 		int * a=tamayoo(fila,cantAtr);
@@ -128,7 +128,7 @@ void separarFila(char * fila,int cantAtr,char ** atributos){
 			free(fila);
 
 }
-void liberarAtributos(char *** atributos,int cantAtr,int fila)
+void liberarAtributos(char *** atributos,int cantAtr,int fila)//libera el array atributos que contiene los campos del fichero, en cada indice del array se guardan los campos de una linea del fichero
 {
 	int i;
 	for(i=0;i<fila;i++){
@@ -144,7 +144,7 @@ void liberarAtributos(char *** atributos,int cantAtr,int fila)
 	}
 	free(atributos);
 }
-Coordenada  ConvertirCoordenada(char * str)
+Coordenada  ConvertirCoordenada(char * str)//convierte el string que corresponde a la coordenada del fichero en un punto.
 {
 
 	Coordenada  c;
@@ -175,7 +175,7 @@ Coordenada  ConvertirCoordenada(char * str)
 
 	return c;
 }
-void leerFilaPlaya(char * fila,Playa * playa,int cantAtr,char ** atributos,int * a)
+void leerFilaPlaya(char * fila,Playa * playa,int cantAtr,char ** atributos,int * a)//guarda los campos de una fila del fichero en la playa (el array esta compuesto de punteros a las playas).
 {
 
 	separarFila(fila,cantAtr,atributos);
@@ -231,8 +231,8 @@ void clearIfNeeded(char *str, int max_line)
 	if ((strlen(str) == max_line-1) && (str[max_line-2] != '\n'))
 		while (getchar() != '\n');
 }
-//tiempo, radiación solar, bandera, oleaje, periodo, temperatura.
-void pasarFicheroAarray(char *** array,FILE * f,int CantAtr,int sizef)
+
+void pasarFicheroAarray(char *** array,FILE * f,int CantAtr,int sizef)//pasa los campos del fichero a un array de 3 dimensiones.
 {
 	int i=0;
 
@@ -248,7 +248,7 @@ void pasarFicheroAarray(char *** array,FILE * f,int CantAtr,int sizef)
 	}
 
 }
-Playa * buscarPlaya(Playa ** pl,int size,int codigo)
+Playa * buscarPlaya(Playa ** pl,int size,int codigo)//busca la playa con ese codigo
 {
 	int i;
 	for(i=0;i<size;i++){
@@ -258,7 +258,7 @@ Playa * buscarPlaya(Playa ** pl,int size,int codigo)
 		}
 	}return NULL;
 }
-void inicializarPlayas(Playa ** pl,int sizepl,int numMax)
+void inicializarPlayas(Playa ** pl,int sizepl,int numMax)//inicializa los valores de la estructura playa
 {
 	int j;
 	for(j=0;j<sizepl;j++){
@@ -276,7 +276,7 @@ void inicializarPlayas(Playa ** pl,int sizepl,int numMax)
 		((pl[j]->tiempo).cant)=0;
 	}
 }
-void liberarPlayas(Playa ** pl,int sizepl)
+void liberarPlayas(Playa ** pl,int sizepl)//libera los arrays que hay dentro de las estructuras que estan dentro de cada playa
 {
 	int j;
 		for(j=0;j<sizepl;j++){
@@ -288,7 +288,7 @@ void liberarPlayas(Playa ** pl,int sizepl)
 			free(pl[j]->tiempo.tiempo);
 		}
 }
-void meterDatosPlaya(Playa ** pl,char ***array,int CantAtr,int sizef,int sizepl,FILE * f)
+void meterDatosPlaya(Playa ** pl,char ***array,int CantAtr,int sizef,int sizepl,FILE * f)//mete los datos del fichero datos playas en las plays teniendo en cuenta el codigo
 {
 	inicializarPlayas(pl,sizepl,10);
 
@@ -472,20 +472,21 @@ void leerActividad(FILE * fa, Actividad ** arraya, int atract, int filaa, char *
 void leerFilaActividad(char * filaa, Actividad * actividad, int atract, char ** atributosA, int * b){
 
 	separarFila(filaa, atract, atributosA);
-	printf("he separado la fila");
-	fflush(stdout);
+
+	//printf("he separado la fila");
+	//fflush(stdout);
 
 	sscanf(atributosA[0], "%i", &(actividad->nombre));
-	printf("%i", (actividad->nombre));
-	fflush(stdout);
+	//printf("%i", (actividad->nombre));
+	//fflush(stdout);
 
 	actividad->tipo=atributosA[1];
-	printf("%s", actividad->tipo);
-	fflush(stdout);
+	//printf("%s", actividad->tipo);
+	//fflush(stdout);
 
 	actividad->nombre=atributosA[2];
-	printf("%s", actividad->nombre);
-	fflush(stdout);
+	//printf("%s", actividad->nombre);
+	//fflush(stdout);
 
 }
 
